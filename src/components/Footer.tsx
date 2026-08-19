@@ -32,16 +32,17 @@ export function Footer() {
 
     setStatus('sending');
     try {
+      // FormData (not JSON) avoids a CORS preflight that Web3Forms' API rejects.
+      const formData = new FormData();
+      formData.append('access_key', WEB3FORMS_ACCESS_KEY);
+      formData.append('subject', `Portfolio feedback from ${name}`);
+      formData.append('name', name);
+      formData.append('email', email);
+      formData.append('message', message);
+
       const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          access_key: WEB3FORMS_ACCESS_KEY,
-          subject: `Portfolio feedback from ${name}`,
-          name,
-          email,
-          message,
-        }),
+        body: formData,
       });
       const data = await res.json();
       if (!data.success) throw new Error(data.message);
