@@ -67,7 +67,11 @@ export function ProfileAvatar() {
       const badgeEl = document.getElementById('status-badge');
       if (slotEl) {
         const rect = slotEl.getBoundingClientRect();
-        setStartRect({ top: rect.top, left: rect.left, size: rect.width });
+        // Store document-relative top (viewport top + current scroll), not the raw viewport-relative
+        // value — mobile browsers fire `resize` when the address bar auto-collapses/expands mid-scroll,
+        // and re-measuring then would otherwise lock in the slot's position at that scrolled offset as
+        // the permanent "scrollY = 0" target, stranding the avatar off-screen once the user scrolls back up.
+        setStartRect({ top: rect.top + window.scrollY, left: rect.left, size: rect.width });
       }
       if (badgeEl) {
         const badge = badgeEl.getBoundingClientRect();
