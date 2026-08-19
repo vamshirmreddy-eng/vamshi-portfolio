@@ -30,6 +30,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/',
   },
+  verification: {
+    google: 'Ro2eRPpsCGmV4YUkoSKBGFMzViY_EPZn1Ugnf22QGZc',
+  },
   authors: [{ name: SITE_NAME }],
   creator: SITE_NAME,
   keywords: [
