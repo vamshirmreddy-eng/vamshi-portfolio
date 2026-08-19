@@ -8,7 +8,7 @@ import { NAVIGATION_LINKS, SITE_NAME } from '@/lib/constants';
 import { MapPin, Linkedin, Mail, Send, Check } from 'lucide-react';
 import { SocialIcon } from '@/components/ui/SocialIcon';
 
-const WEB3FORMS_ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
+const WEB3FORMS_ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY?.trim();
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
