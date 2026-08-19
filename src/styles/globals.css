@@ -1,0 +1,227 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Light theme (default) — blue is the single primary accent; "secondary" is now
+     just a lighter/darker blue tint, not a competing hue, per the reference's restraint. */
+  --color-primary: 47 128 255; /* #2f80ff */
+  --color-primary-dark: 31 112 245; /* #1f70f5 */
+  --color-secondary: 91 157 255; /* light blue tint — for gradients/accents, not a new hue */
+  --color-secondary-dark: 31 112 245;
+  --color-bg: 255 255 255;
+  --color-bg-light: 245 245 245;
+  --color-text: 23 25 29; /* #17191d */
+  --color-text-secondary: 95 104 117; /* #5f6875 */
+  --color-border: 15 23 42; /* used at 8% opacity via the `border-border` utility — the
+    hairline border repeated ~18x across cards/pills/dividers, now one source of truth */
+}
+
+.dark {
+  /* Dark theme — same accents, inverted neutrals */
+  --color-primary: 47 128 255;
+  --color-primary-dark: 31 112 245;
+  --color-secondary: 91 157 255;
+  --color-secondary-dark: 31 112 245;
+  --color-bg: 10 10 10;
+  --color-bg-light: 23 23 23;
+  --color-text: 250 250 250;
+  --color-text-secondary: 163 163 163;
+  --color-border: 15 23 42; /* same value as light — matches current rendered behavior exactly,
+    not a fix for dark-mode contrast (that would be a visual change, out of scope here) */
+}
+
+* {
+  @apply m-0 p-0 box-border;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* legacy Edge/IE */
+}
+
+body {
+  @apply text-text-primary font-sans;
+  position: relative;
+  min-height: 100vh;
+  background: linear-gradient(
+    90deg,
+    #ffffff 0%,
+    #f7fbff 18%,
+    #edf6ff 35%,
+    #e3f0ff 52%,
+    #d6eaff 74%,
+    #c8e3ff 100%
+  );
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    linear-gradient(to right, rgba(113, 171, 230, 0.16) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(113, 171, 230, 0.16) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Dark mode: same grid/wash formula, recalibrated for a dark base */
+.dark body {
+  background: linear-gradient(90deg, #0a0a0a 0%, #0c1018 30%, #0e1826 65%, #10203a 100%);
+}
+
+.dark body::before {
+  background-image:
+    linear-gradient(to right, rgba(90, 155, 210, 0.16) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(90, 155, 210, 0.16) 1px, transparent 1px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Scrollbar hidden — scrolling still works, just no visible track/thumb */
+::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, modern Edge */
+}
+
+/* Selection styling */
+::selection {
+  @apply bg-primary text-white;
+}
+
+/* Focus visible styling */
+:focus-visible {
+  @apply outline-2 outline-offset-2 outline-primary;
+}
+
+/* Code styling */
+code {
+  @apply font-mono text-sm;
+}
+
+pre {
+  @apply bg-dark-bg-light p-4 rounded-lg overflow-x-auto;
+}
+
+/* Link styling */
+a {
+  @apply transition-colors duration-200;
+}
+
+a:hover {
+  @apply text-secondary;
+}
+
+/* Text selection accessibility */
+a:focus-visible {
+  @apply outline-2 outline-offset-2 outline-primary rounded;
+}
+
+button:focus-visible {
+  @apply outline-2 outline-offset-2 outline-primary rounded;
+}
+
+/* Smooth transitions */
+.fade-in {
+  animation: fadeIn 0.5s ease-in forwards;
+}
+
+.slide-up {
+  animation: slideUp 0.5s ease-out forwards;
+}
+
+.scale-in {
+  animation: scaleIn 0.3s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@layer components {
+  .button-primary {
+    @apply px-6 py-3 bg-primary text-white rounded-[10px] font-display text-lg;
+    border: 2.5px solid #111111;
+    box-shadow: 3px 4px 0 #111111;
+    transition: transform 160ms ease, box-shadow 160ms ease;
+  }
+
+  .button-primary:hover {
+    transform: translateY(-2px);
+  }
+
+  .button-primary:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 2px 0 #111111;
+  }
+
+  .button-secondary {
+    @apply px-6 py-3 bg-dark-bg text-text rounded-[10px] font-display text-lg;
+    border: 2.5px solid #111111;
+    box-shadow: 3px 4px 0 #111111;
+    transition: transform 160ms ease, box-shadow 160ms ease;
+  }
+
+  .button-secondary:hover {
+    transform: translateY(-2px);
+  }
+
+  .button-secondary:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 2px 0 #111111;
+  }
+
+  .tech-pill {
+    background: #202936;
+    color: #f6f8fb;
+    padding: 5px 9px;
+    border-radius: 7px;
+  }
+}
