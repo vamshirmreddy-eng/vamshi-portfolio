@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Montserrat, Cabin, Bangers } from 'next/font/google'
 import { MotionConfig } from 'framer-motion'
+import { Analytics } from '@vercel/analytics/next'
 import { SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, SITE_URL } from '@/lib/constants'
 import '@/styles/globals.css'
 import { Header, Footer } from '@/components'
@@ -103,6 +104,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <main className="min-h-screen pb-28">{children}</main>
           <Footer />
         </MotionConfig>
+        <Analytics />
 
         {/* Dark mode initialization script */}
         <script
