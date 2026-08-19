@@ -158,7 +158,7 @@ export function About() {
               one to bring it forward. Frame stays fixed light "paper" regardless of site theme,
               like a physical photo would. */}
           <div
-            className="relative w-full lg:w-[min(720px,100%)] h-[380px] sm:h-[480px] lg:h-[620px] mx-auto lg:mx-0"
+            className="relative w-full lg:w-[min(720px,100%)] h-[380px] sm:h-[480px] lg:h-[620px] mx-auto lg:mx-0 overflow-hidden lg:overflow-visible"
             onMouseEnter={() => setStackHovered(true)}
             onMouseLeave={() => setStackHovered(false)}
           >
@@ -184,7 +184,7 @@ export function About() {
                   initial={false}
                   animate={{ x: t.x, y: t.y, rotate: t.rotate, zIndex: t.zIndex }}
                   transition={{ type: 'spring', stiffness: 300, damping: 28, mass: 0.8 }}
-                  className={`absolute left-1/2 top-[8%] sm:top-[6%] -translate-x-1/2 ${CARD_WIDTH} bg-[#f8f8f6] p-[18px] sm:p-[26px] pb-[14px] sm:pb-[18px] rounded-xl border border-black/5 outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
+                  className={`absolute inset-x-0 mx-auto top-[8%] sm:top-[6%] ${CARD_WIDTH} bg-[#f8f8f6] p-[18px] sm:p-[26px] pb-[14px] sm:pb-[18px] rounded-xl border border-black/5 outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
                     isFront ? 'cursor-grab' : 'cursor-pointer'
                   }`}
                   style={{

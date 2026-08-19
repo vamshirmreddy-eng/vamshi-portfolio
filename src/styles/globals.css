@@ -39,12 +39,14 @@ html {
   scroll-behavior: smooth;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* legacy Edge/IE */
+  overflow-x: hidden;
 }
 
 body {
   @apply text-text-primary font-sans;
   position: relative;
   min-height: 100vh;
+  overflow-x: hidden;
   background: linear-gradient(
     90deg,
     #ffffff 0%,
