@@ -1,12 +1,15 @@
 // Portfolio Configuration
-export const SITE_NAME = 'Vamshi Reddy'
-export const SITE_TITLE = 'Full Stack Engineer | SailPoint'
+export const SITE_NAME = 'Vamshi M';
+export const SITE_TITLE = 'Full Stack Engineer | SailPoint';
 export const SITE_DESCRIPTION =
-  'Full Stack Engineer with 6+ years of experience building scalable cloud-based SaaS applications with Next.js, React, TypeScript, Java, Go, and AWS.'
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://vamshi.dev'
-export const TWITTER_HANDLE = ''
-export const GITHUB_URL = ''
-export const LINKEDIN_URL = 'https://www.linkedin.com/in/vamshi-m25/'
+  'Full Stack Engineer with 5+ years of experience building enterprise React and Node.js applications on AWS across identity, provisioning, and subscription billing.';
+export const SITE_URL = 'https://vamshireddy.vercel.app';
+export const PROFILE_LOCATION = 'Dallas-Fort Worth, Texas';
+export const PROFILE_TIMEZONE = 'America/Chicago';
+export const PROFILE_TIMEZONE_LABEL = 'Central Time (CT)';
+export const TWITTER_HANDLE = '';
+export const GITHUB_URL = '';
+export const LINKEDIN_URL = 'https://www.linkedin.com/in/vamshi-m25/';
 
 // Navigation
 export const NAVIGATION_LINKS = [
@@ -16,7 +19,7 @@ export const NAVIGATION_LINKS = [
   { name: 'Experience', href: '#experience' },
   { name: 'Stack', href: '#tech-stack' },
   { name: 'Contact', href: '#contact' },
-]
+];
 
 // Sections
 export const SECTIONS = {
@@ -26,14 +29,14 @@ export const SECTIONS = {
   EXPERIENCE: 'experience',
   PROJECTS: 'projects',
   CONTACT: 'contact',
-}
+};
 
 // Animation timings (in milliseconds)
 export const ANIMATION_DURATION = {
   FAST: 300,
   NORMAL: 500,
   SLOW: 800,
-}
+};
 
 // Color palette
 export const COLORS = {
@@ -45,14 +48,14 @@ export const COLORS = {
   DARK_BG_LIGHT: '#15192f',
   TEXT_PRIMARY: '#e8eaef',
   TEXT_SECONDARY: '#a0aac0',
-}
+};
 
 // Breakpoints
 export const BREAKPOINTS = {
   MOBILE: 640,
   TABLET: 1024,
   DESKTOP: 1280,
-}
+};
 
 // SEO
 export const SEO_CONFIG = {
@@ -62,24 +65,24 @@ export const SEO_CONFIG = {
   ogImageWidth: 1200,
   ogImageHeight: 630,
   twitterCard: 'summary_large_image',
-}
+};
 
 // Skills per section display
 export const SKILLS_DISPLAY_COUNT = {
   HERO: 8,
   TECH_STACK: 30,
-}
+};
 
 // Project showcase
-export const FEATURED_PROJECTS_COUNT = 2
+export const FEATURED_PROJECTS_COUNT = 2;
 
 // Timeline
-export const CURRENT_YEAR = new Date().getFullYear()
-export const YEARS_OF_EXPERIENCE = 6
+export const CURRENT_YEAR = new Date().getFullYear();
+export const YEARS_OF_EXPERIENCE = 5;
 
 // Metadata
 export const SOCIAL_MEDIA = {
   linkedin: LINKEDIN_URL,
   github: GITHUB_URL,
   twitter: TWITTER_HANDLE,
-}
+};

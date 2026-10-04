@@ -4,12 +4,11 @@ import {
   CaseStudies,
   Experience,
   TechStack,
-  Projects,
   AIInProduction,
   HowIEngineer,
   About,
   Contact,
-} from '@/components'
+} from '@/components';
 
 export default function Home() {
   return (
@@ -20,10 +19,9 @@ export default function Home() {
       <CaseStudies />
       <Experience />
       <TechStack />
-      <Projects />
       <AIInProduction />
       <HowIEngineer />
       <Contact />
     </>
-  )
+  );
 }

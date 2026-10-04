@@ -20,7 +20,8 @@ const METRICS: ImpactMetric[] = [
     value: YEARS_OF_EXPERIENCE,
     suffix: '+ Years',
     label: 'Production Engineering',
-    detail: 'Shipping production SaaS systems across full-stack, backend, and cloud engineering since 2019.',
+    detail:
+      'Building production SaaS systems across full-stack, backend, and cloud engineering since 2020.',
   },
   {
     value: 99.9,
@@ -40,7 +41,8 @@ const METRICS: ImpactMetric[] = [
     value: 42,
     suffix: '% ↑',
     label: 'Provisioning Throughput',
-    detail: 'Increased by engineering asynchronous, event-driven services with Kafka, Redis, and AWS SQS.',
+    detail:
+      'Increased by engineering asynchronous, event-driven services with Kafka, Redis, and AWS SQS.',
   },
 ];
 

@@ -8,24 +8,35 @@ import { Section, SectionHeading } from '@/components/Section';
 import { MarkerUnderline } from '@/components/MarkerUnderline';
 import { CARD_CLASS } from '@/components/ui/Card';
 import { cn } from '@/lib/utils';
-import { Code2, Layers, Database, Network, Cloud, Bot, Brain, MessageSquareText, ChevronDown } from 'lucide-react';
+import {
+  Code2,
+  Layers,
+  Database,
+  Network,
+  Cloud,
+  Bot,
+  Brain,
+  MessageSquareText,
+  ChevronDown,
+} from 'lucide-react';
 
 // A shared shape both react-icons and lucide-react icon components satisfy.
 type AnyIcon = ComponentType<{ size?: number; className?: string; style?: React.CSSProperties }>;
 import {
   SiTypescript,
   SiJavascript,
-  SiOpenjdk,
   SiGo,
   SiPython,
   SiReact,
   SiNextdotjs,
   SiNodedotjs,
   SiExpress,
-  SiSpringboot,
+  SiNestjs,
   SiTailwindcss,
   SiPostgresql,
+  SiMongodb,
   SiRedis,
+  SiTerraform,
   SiDocker,
   SiKubernetes,
   SiGithubactions,
@@ -57,11 +68,9 @@ const CATEGORIES: TechCategory[] = [
     Icon: Code2,
     badges: [
       { name: 'TypeScript', Icon: SiTypescript, color: '#3178C6', core: true },
-      { name: 'Java', Icon: SiOpenjdk, color: '#F58219', core: true },
-      { name: 'Go', Icon: SiGo, color: '#00ADD8', core: true },
+      { name: 'JavaScript', Icon: SiJavascript, color: '#F7DF1E', core: true },
+      { name: 'Golang', Icon: SiGo, color: '#00ADD8' },
       { name: 'Python', Icon: SiPython, color: '#3776AB' },
-      { name: 'JavaScript', Icon: SiJavascript, color: '#F7DF1E' },
-      { name: 'SQL', Icon: Database, color: '#2f80ff' },
     ],
   },
   {
@@ -78,8 +87,8 @@ const CATEGORIES: TechCategory[] = [
     Icon: Layers,
     badges: [
       { name: 'Node.js', Icon: SiNodedotjs, color: '#339933', core: true },
-      { name: 'Spring Boot', Icon: SiSpringboot, color: '#6DB33F' },
-      { name: 'Express', Icon: SiExpress },
+      { name: 'Express.js', Icon: SiExpress, core: true },
+      { name: 'NestJS', Icon: SiNestjs, color: '#E0234E', core: true },
       { name: 'REST APIs', Icon: Network, color: '#2f80ff' },
       { name: 'Microservices', Icon: Layers, color: '#2f80ff' },
     ],
@@ -89,6 +98,8 @@ const CATEGORIES: TechCategory[] = [
     Icon: Database,
     badges: [
       { name: 'PostgreSQL', Icon: SiPostgresql, color: '#4169E1', core: true },
+      { name: 'MongoDB', Icon: SiMongodb, color: '#47A248', core: true },
+      { name: 'pgvector', Icon: Database, color: '#2f80ff' },
       { name: 'Redis', Icon: SiRedis, color: '#DC382D', core: true },
     ],
   },
@@ -109,6 +120,7 @@ const CATEGORIES: TechCategory[] = [
     badges: [
       { name: 'AWS', Icon: FaAws, color: '#FF9900', core: true },
       { name: 'Docker', Icon: SiDocker, color: '#2496ED', core: true },
+      { name: 'Terraform', Icon: SiTerraform, color: '#844FBA', core: true },
       { name: 'Kubernetes', Icon: SiKubernetes, color: '#326CE6' },
       { name: 'GitHub Actions', Icon: SiGithubactions, color: '#2088FF' },
       { name: 'CI/CD', Icon: Cloud, color: '#2f80ff' },
@@ -209,8 +221,8 @@ export function TechStack() {
             </div>
 
             <p className="mt-6 text-sm text-secondary-text flex items-center gap-1.5">
-              <SiGithubcopilot size={14} /> Also part of my day-to-day workflow: GitHub Copilot and Claude Code for
-              AI-assisted development.
+              <SiGithubcopilot size={14} /> Also part of my day-to-day workflow: GitHub Copilot and
+              Claude Code for AI-assisted development.
             </p>
 
             <button

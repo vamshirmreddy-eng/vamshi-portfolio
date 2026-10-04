@@ -6,7 +6,13 @@ import { portfolioConfig, contactInfo } from '@/data/social';
 import { experience } from '@/data/experience';
 import { skills } from '@/data/skills';
 import { copyToClipboard } from '@/lib/utils';
-import { GITHUB_URL, YEARS_OF_EXPERIENCE } from '@/lib/constants';
+import {
+  GITHUB_URL,
+  PROFILE_LOCATION,
+  PROFILE_TIMEZONE,
+  PROFILE_TIMEZONE_LABEL,
+  YEARS_OF_EXPERIENCE,
+} from '@/lib/constants';
 import { ProfileAvatar } from '@/components/ProfileAvatar';
 import { Linkedin, Mail, Github, Clock, Terminal, ArrowRight } from 'lucide-react';
 import type { IconType } from 'react-icons';
@@ -16,8 +22,8 @@ import {
   SiPostgresql,
   SiDocker,
   SiTypescript,
-  SiGo,
-  SiOpenjdk,
+  SiExpress,
+  SiNestjs,
   SiGithubcopilot,
 } from 'react-icons/si';
 
@@ -27,8 +33,8 @@ const SKILL_ICONS: Record<string, { Icon: IconType; color?: string }> = {
   PostgreSQL: { Icon: SiPostgresql, color: '#4169E1' },
   Docker: { Icon: SiDocker, color: '#2496ED' },
   TypeScript: { Icon: SiTypescript, color: '#3178C6' },
-  'Go (Golang)': { Icon: SiGo, color: '#00ADD8' },
-  Java: { Icon: SiOpenjdk, color: '#F58219' },
+  'Express.js': { Icon: SiExpress },
+  NestJS: { Icon: SiNestjs, color: '#E0234E' },
   'GitHub Copilot': { Icon: SiGithubcopilot },
 };
 
@@ -40,7 +46,10 @@ const ENTRANCE = {
   animate: { opacity: 1, y: 0 },
   transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] as const },
 };
-const stagger = (i: number) => ({ ...ENTRANCE, transition: { ...ENTRANCE.transition, delay: i * 0.06 } });
+const stagger = (i: number) => ({
+  ...ENTRANCE,
+  transition: { ...ENTRANCE.transition, delay: i * 0.06 },
+});
 
 function LiveClock() {
   const [time, setTime] = useState<string | null>(null);
@@ -52,8 +61,8 @@ function LiveClock() {
           hour: '2-digit',
           minute: '2-digit',
           second: '2-digit',
-          timeZone: 'America/Los_Angeles',
-        })} PT`
+          timeZone: PROFILE_TIMEZONE,
+        })} ${PROFILE_TIMEZONE_LABEL}`
       );
     update();
     const interval = setInterval(update, 1000);
@@ -86,10 +95,13 @@ export function Hero() {
           768–894px (md) and 1024–1070px (lg), including iPad portrait at exactly 768px. */}
       <div className="relative z-10 w-full max-w-[760px] px-4 sm:px-6 md:ml-[15vw] md:px-0 md:max-w-[min(760px,calc(100vw-15vw-2rem))] lg:ml-[29vw] lg:max-w-[min(760px,calc(100vw-29vw-2rem))]">
         {/* Avatar + Name */}
-        <motion.div {...stagger(0)} className="flex items-center gap-5 mb-3">
+        <motion.div
+          {...stagger(0)}
+          className="flex flex-col items-start gap-4 mb-3 sm:flex-row sm:items-center sm:gap-5"
+        >
           <ProfileAvatar />
           <div>
-            <h1 className="font-heading text-[clamp(2.875rem,4vw,4rem)] font-black text-text leading-[0.95] tracking-[-0.045em]">
+            <h1 className="font-heading text-[clamp(2.5rem,11vw,4rem)] font-black text-text leading-[0.95] tracking-[-0.045em]">
               {portfolioConfig.name}
             </h1>
             <p className="text-lg font-bold text-primary mt-1">{portfolioConfig.title}</p>
@@ -105,7 +117,10 @@ export function Hero() {
         </motion.p>
 
         {/* Meta line: years · current company · previous company · location */}
-        <motion.p {...stagger(2)} className="flex flex-wrap items-center gap-x-1.5 text-sm text-secondary-text mb-7">
+        <motion.p
+          {...stagger(2)}
+          className="flex flex-wrap items-center gap-x-1.5 text-sm text-secondary-text mb-7"
+        >
           <span className="font-semibold text-text">{YEARS_OF_EXPERIENCE}+ years</span>
           <span>·</span>
           {currentJob.companyLink ? (
@@ -140,12 +155,8 @@ export function Hero() {
               </span>
             </>
           )}
-          {currentJob.location && (
-            <>
-              <span>·</span>
-              <span>{currentJob.location}</span>
-            </>
-          )}
+          <span>·</span>
+          <span>{PROFILE_LOCATION}</span>
         </motion.p>
 
         {/* Primary CTAs */}
@@ -164,7 +175,10 @@ export function Hero() {
         </motion.div>
 
         {/* Social + contact + clock */}
-        <motion.div {...stagger(4)} className="flex flex-wrap items-center gap-4 mb-6 text-secondary-text text-sm">
+        <motion.div
+          {...stagger(4)}
+          className="flex flex-wrap items-center gap-4 mb-6 text-secondary-text text-sm"
+        >
           {GITHUB_URL && (
             <a
               href={GITHUB_URL}
@@ -193,7 +207,10 @@ export function Hero() {
           >
             <Mail size={18} />
           </button>
-          <a href="#contact" className="font-medium text-primary hover:text-primary-dark transition-colors">
+          <a
+            href="#contact"
+            className="font-medium text-primary hover:text-primary-dark transition-colors"
+          >
             Contact me{copied ? ' (email copied!)' : ''}
           </a>
           <span className="w-px h-4 bg-[rgba(15,23,42,0.14)]" />
@@ -223,7 +240,10 @@ export function Hero() {
             );
           })}
           {hasMoreSkills && (
-            <a href="#tech-stack" className="text-primary hover:text-primary-dark font-medium transition-colors">
+            <a
+              href="#tech-stack"
+              className="text-primary hover:text-primary-dark font-medium transition-colors"
+            >
               Explore full stack →
             </a>
           )}

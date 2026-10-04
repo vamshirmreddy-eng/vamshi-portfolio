@@ -1,7 +1,7 @@
 {
   "name": "vamshi-portfolio",
   "version": "1.0.0",
-  "description": "Professional portfolio for Vamshi Reddy - Senior Full Stack Developer",
+  "description": "Professional portfolio for Vamshi M - Senior Full Stack Developer",
   "private": true,
   "scripts": {
     "dev": "next dev",
