@@ -1,28 +1,36 @@
-import type { Metadata } from 'next'
-import { Montserrat, Cabin, Bangers } from 'next/font/google'
-import { MotionConfig } from 'framer-motion'
-import { Analytics } from '@vercel/analytics/next'
-import { SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, SITE_URL } from '@/lib/constants'
-import '@/styles/globals.css'
-import { Header, Footer } from '@/components'
+import type { Metadata } from 'next';
+import { Montserrat, Cabin, Bangers } from 'next/font/google';
+import { MotionConfig } from 'framer-motion';
+import { Analytics } from '@vercel/analytics/next';
+import {
+  PROFILE_LOCATION,
+  PROFILE_TIMEZONE,
+  SITE_DESCRIPTION,
+  SITE_NAME,
+  SITE_TITLE,
+  SITE_URL,
+} from '@/lib/constants';
+import { contactInfo } from '@/data/social';
+import '@/styles/globals.css';
+import { Header, Footer } from '@/components';
 
 const montserrat = Montserrat({
   subsets: ['latin'],
   weight: ['700', '800', '900'],
   variable: '--font-montserrat',
-})
+});
 
 const cabin = Cabin({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
   variable: '--font-cabin',
-})
+});
 
 const bangers = Bangers({
   subsets: ['latin'],
   weight: '400',
   variable: '--font-bangers',
-})
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -41,9 +49,11 @@ export const metadata: Metadata = {
     'React',
     'Next.js',
     'TypeScript',
-    'Java',
-    'Go',
+    'Node.js',
+    'Express.js',
+    'NestJS',
     'AWS',
+    'Dallas-Fort Worth',
     'SailPoint',
     'Chargebee',
     'Software Developer',
@@ -85,20 +95,46 @@ export const metadata: Metadata = {
     icon: '/favicon.ico',
     apple: '/apple-touch-icon.png',
   },
-}
+};
 
 interface RootLayoutProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
+  const profileJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: SITE_NAME,
+    url: SITE_URL,
+    jobTitle: 'Full Stack Engineer',
+    email: `mailto:${contactInfo.email}`,
+    sameAs: [contactInfo.linkedin],
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Dallas-Fort Worth',
+      addressRegion: 'Texas',
+      addressCountry: 'US',
+    },
+    knowsAbout: ['React', 'Next.js', 'TypeScript', 'Node.js', 'Express.js', 'NestJS', 'AWS'],
+    workLocation: PROFILE_LOCATION,
+    homeLocation: PROFILE_LOCATION,
+    timeZone: PROFILE_TIMEZONE,
+  };
+
   return (
     <html lang="en" suppressHydrationWarning className="scroll-smooth bg-dark-bg">
       <head>
         <meta name="theme-color" content="#ffffff" />
         <meta name="color-scheme" content="light dark" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(profileJsonLd) }}
+        />
       </head>
-      <body className={`${montserrat.variable} ${cabin.variable} ${bangers.variable} text-text antialiased`}>
+      <body
+        className={`${montserrat.variable} ${cabin.variable} ${bangers.variable} text-text antialiased`}
+      >
         <MotionConfig reducedMotion="user">
           <Header />
           <main className="min-h-screen pb-28">{children}</main>
@@ -123,5 +159,5 @@ export default function RootLayout({ children }: RootLayoutProps) {
         />
       </body>
     </html>
-  )
+  );
 }

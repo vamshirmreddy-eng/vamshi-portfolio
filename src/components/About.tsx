@@ -8,12 +8,15 @@ import { Section, SectionHeading } from '@/components/Section';
 import { MarkerUnderline } from '@/components/MarkerUnderline';
 import { portfolioConfig, contactInfo } from '@/data/social';
 import { education } from '@/data/education';
-import { GraduationCap } from 'lucide-react';
+import { Award, GraduationCap } from 'lucide-react';
 
 // Wraps exact substrings from the source text in <strong> — never rewrites the copy, only emphasizes it.
 function withEmphasis(text: string, phrases: string[]) {
   if (phrases.length === 0) return text;
-  const pattern = new RegExp(`(${phrases.map((p) => p.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`, 'g');
+  const pattern = new RegExp(
+    `(${phrases.map((p) => p.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`,
+    'g'
+  );
   return text.split(pattern).map((part, i) =>
     phrases.includes(part) ? (
       <strong key={i} className="text-text font-semibold">
@@ -111,24 +114,26 @@ export function About() {
             <div className="space-y-5 text-secondary-text leading-relaxed">
               <p>
                 {withEmphasis(portfolioConfig.longBio, [
-                  '99.9% availability',
+                  '10M+ monthly billing cycles',
+                  '99.9% uptime',
                   'SailPoint',
                   'Chargebee',
-                  '33%',
                 ])}
               </p>
               <p>
                 {withEmphasis(portfolioConfig.description, [
-                  'scalable cloud-based SaaS applications',
-                  'customer-facing features',
-                  'microservices',
+                  'React and Node.js applications',
+                  'high-volume REST APIs',
+                  'production AI features',
                 ])}
               </p>
             </div>
 
             {education.length > 0 && (
               <div className="mt-8 pt-6 border-t border-border">
-                <p className="text-xs font-bold uppercase tracking-wide text-secondary-text mb-3">Education</p>
+                <p className="text-xs font-bold uppercase tracking-wide text-secondary-text mb-3">
+                  Education
+                </p>
                 <div className="space-y-3">
                   {education.map((ed) => (
                     <div key={ed.id} className="flex items-start gap-3">
@@ -139,6 +144,15 @@ export function About() {
                       </div>
                     </div>
                   ))}
+                </div>
+                <div className="flex items-start gap-3 mt-5">
+                  <Award size={18} className="text-primary mt-0.5 shrink-0" />
+                  <div>
+                    <p className="font-semibold text-text text-sm">Certification</p>
+                    <p className="text-sm text-secondary-text">
+                      Oracle Cloud Infrastructure 2025 Generative AI Professional
+                    </p>
+                  </div>
                 </div>
               </div>
             )}

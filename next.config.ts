@@ -47,7 +47,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/resume',
-        destination: '/Vamshi_Reddy_Resume.pdf',
+        destination: '/Vamshi_Reddy_FullStack_Resume_2026.pdf',
         permanent: true,
       },
     ]
