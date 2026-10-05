@@ -11,7 +11,7 @@ const STEPS = [
   'Backend Services',
   'Event Bus / Queue',
   'Workers / Integrations',
-  'MongoDB + Redis',
+  'PostgreSQL + Redis',
   'Cloud Infrastructure',
 ];
 
@@ -30,9 +30,7 @@ export function ArchitectureDiagram() {
           <div className="px-5 py-2.5 rounded-xl border border-primary/30 bg-primary/5 text-sm font-semibold text-text whitespace-nowrap">
             {step}
           </div>
-          {i < STEPS.length - 1 && (
-            <ArrowDown size={16} className="text-primary/50 my-1.5 shrink-0" />
-          )}
+          {i < STEPS.length - 1 && <ArrowDown size={16} className="text-primary/50 my-1.5 shrink-0" />}
         </motion.div>
       ))}
     </div>

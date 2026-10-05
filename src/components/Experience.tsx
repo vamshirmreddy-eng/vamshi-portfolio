@@ -8,8 +8,8 @@ import { Globe } from 'lucide-react';
 
 // Picks the 2 most representative achievements per role instead of dumping the full resume-length list.
 const HIGHLIGHTS: Record<string, number[]> = {
-  sailpoint: [1, 5],
-  chargebee: [0, 2],
+  sailpoint: [2, 9],
+  chargebee: [2, 4],
 };
 
 export function Experience() {
@@ -34,20 +34,14 @@ export function Experience() {
           <div className="space-y-14">
             {experience.map((exp) => {
               const isCurrent = exp.endDate === null;
-              const highlights = (HIGHLIGHTS[exp.id] ?? [])
-                .map((i) => exp.achievements[i])
-                .filter(Boolean);
+              const highlights = (HIGHLIGHTS[exp.id] ?? []).map((i) => exp.achievements[i]).filter(Boolean);
 
               return (
-                <div
-                  key={exp.id}
-                  className="grid grid-cols-1 sm:grid-cols-[168px_56px_1fr] gap-3 sm:gap-0"
-                >
+                <div key={exp.id} className="grid grid-cols-1 sm:grid-cols-[168px_56px_1fr] gap-3 sm:gap-0">
                   {/* Left meta column */}
                   <div className="sm:text-right sm:pr-4">
                     <p className="text-sm text-secondary-text">
-                      {formatDate(exp.startDate)} –{' '}
-                      {exp.endDate ? formatDate(exp.endDate) : 'Present'}
+                      {formatDate(exp.startDate)} – {exp.endDate ? formatDate(exp.endDate) : 'Present'}
                     </p>
                     <p className="font-bold text-text mt-1">{exp.company}</p>
                     {exp.companyLink && (
@@ -61,9 +55,7 @@ export function Experience() {
                         <Globe size={16} />
                       </a>
                     )}
-                    {exp.location && (
-                      <p className="text-sm text-secondary-text mt-2">{exp.location}</p>
-                    )}
+                    {exp.location && <p className="text-sm text-secondary-text mt-2">{exp.location}</p>}
                     <p className="text-sm text-secondary-text">
                       {exp.type === 'full-time' ? 'Full-time' : 'Freelance'}
                     </p>

@@ -9,6 +9,7 @@ export { CaseStudies } from './CaseStudies';
 export { About } from './About';
 export { TechStack } from './TechStack';
 export { Experience } from './Experience';
+export { Projects } from './Projects';
 export { AIInProduction } from './AIInProduction';
 export { HowIEngineer } from './HowIEngineer';
 export { Contact } from './Contact';

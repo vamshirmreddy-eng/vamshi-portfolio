@@ -3,7 +3,8 @@
 import { useState, type FormEvent } from 'react';
 import { Container } from '@/components/Container';
 import { contactInfo, portfolioConfig } from '@/data/social';
-import { NAVIGATION_LINKS, PROFILE_LOCATION, SITE_NAME } from '@/lib/constants';
+import { experience } from '@/data/experience';
+import { NAVIGATION_LINKS, SITE_NAME } from '@/lib/constants';
 import { MapPin, Linkedin, Mail, Send, Check } from 'lucide-react';
 import { SocialIcon } from '@/components/ui/SocialIcon';
 
@@ -12,6 +13,7 @@ const WEB3FORMS_ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY?.trim();
 export function Footer() {
   const currentYear = new Date().getFullYear();
   const initials = SITE_NAME.split(' ');
+  const currentLocation = experience[0]?.location;
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -71,12 +73,14 @@ export function Footer() {
                 <span className="text-primary">.</span>
               </h3>
               <p className="mt-4 text-secondary-text text-sm leading-relaxed max-w-xs">
-                I&apos;m {portfolioConfig.name.split(' ')[0]}, a {portfolioConfig.title} building
-                scalable systems across the stack. Thanks for checking out my site!
+                I&apos;m {portfolioConfig.name.split(' ')[0]}, a {portfolioConfig.title} building scalable systems
+                across the stack. Thanks for checking out my site!
               </p>
-              <div className="flex items-center gap-2 mt-4 text-sm text-secondary-text">
-                <MapPin size={16} /> {PROFILE_LOCATION}
-              </div>
+              {currentLocation && (
+                <div className="flex items-center gap-2 mt-4 text-sm text-secondary-text">
+                  <MapPin size={16} /> {currentLocation}
+                </div>
+              )}
               <div className="flex items-center gap-3 mt-3">
                 <SocialIcon
                   href={contactInfo.linkedin}
@@ -105,10 +109,7 @@ export function Footer() {
               <ul className="space-y-3 text-sm">
                 {NAVIGATION_LINKS.map((link) => (
                   <li key={link.href}>
-                    <a
-                      href={link.href}
-                      className="text-secondary-text hover:text-primary transition-colors"
-                    >
+                    <a href={link.href} className="text-secondary-text hover:text-primary transition-colors">
                       {link.name}
                     </a>
                   </li>
@@ -121,9 +122,8 @@ export function Footer() {
               <h4 className="font-heading font-bold text-text mb-1 underline decoration-wavy decoration-2 decoration-primary/50 underline-offset-4 inline-block">
                 Feedback
               </h4>{' '}
-              <span className="text-secondary-text italic text-sm">
-                ~ thoughts, bugs, or just saying hi
-              </span>
+              <span className="text-secondary-text italic text-sm">~ thoughts, bugs, or just saying hi</span>
+
               <form onSubmit={handleSubmit} className="mt-4 space-y-3">
                 <div className="flex gap-3">
                   <input
@@ -168,9 +168,7 @@ export function Footer() {
                   className="w-full px-3 py-2 rounded-[10px] border border-[rgba(15,23,42,0.12)] bg-white/65 dark:bg-dark-bg/50 text-sm text-text placeholder:text-secondary-text focus:outline-none focus:border-primary focus:shadow-[0_0_0_3px_rgba(47,128,255,0.1)] transition-all resize-y"
                 />
                 {status === 'error' && (
-                  <p className="text-xs text-red-500">
-                    Something went wrong. Please try again or email me directly.
-                  </p>
+                  <p className="text-xs text-red-500">Something went wrong. Please try again or email me directly.</p>
                 )}
                 <p className="text-xs text-secondary-text">
                   Sent via Web3Forms, straight to my inbox. Not stored anywhere else, not shared.

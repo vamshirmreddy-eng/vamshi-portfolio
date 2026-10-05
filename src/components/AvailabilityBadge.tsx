@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { PROFILE_LOCATION } from '@/lib/constants';
+import { experience } from '@/data/experience';
 import { MapPin, ArrowRight } from 'lucide-react';
 
 const INTERESTED_IN = [
@@ -18,6 +18,7 @@ const INTERESTED_IN = [
 // ProfileAvatar's scroll-linked travel target).
 export function AvailabilityBadge() {
   const [badgeOpen, setBadgeOpen] = useState(false);
+  const currentLocation = experience[0]?.location;
 
   return (
     <div
@@ -53,9 +54,7 @@ export function AvailabilityBadge() {
             transition={{ duration: 0.15 }}
             className="mt-2 w-64 p-4 rounded-2xl border border-border bg-dark-bg/95 backdrop-blur-md shadow-lg text-left"
           >
-            <p className="text-xs font-semibold text-secondary-text uppercase tracking-wide mb-2">
-              Interested in
-            </p>
+            <p className="text-xs font-semibold text-secondary-text uppercase tracking-wide mb-2">Interested in</p>
             <ul className="space-y-1 mb-3">
               {INTERESTED_IN.map((role) => (
                 <li key={role} className="text-sm text-text">
@@ -63,13 +62,13 @@ export function AvailabilityBadge() {
                 </li>
               ))}
             </ul>
-            <div className="flex items-start gap-1.5 text-sm text-secondary-text mb-1">
-              <MapPin size={14} className="mt-0.5 shrink-0" />
-              <span>{PROFILE_LOCATION}</span>
-            </div>
-            <p className="text-xs text-secondary-text mb-3">
-              Open to discussing remote/hybrid opportunities.
-            </p>
+            {currentLocation && (
+              <div className="flex items-start gap-1.5 text-sm text-secondary-text mb-1">
+                <MapPin size={14} className="mt-0.5 shrink-0" />
+                <span>{currentLocation}</span>
+              </div>
+            )}
+            <p className="text-xs text-secondary-text mb-3">Open to discussing remote/hybrid opportunities.</p>
             <a
               href="#contact"
               className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:text-primary-dark transition-colors"
